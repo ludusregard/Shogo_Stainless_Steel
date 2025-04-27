@@ -186,11 +186,6 @@ void CMoveMgr::UpdateControlFlags()
 	{
 		if (m_pClientDE->IsCommandOn(COMMAND_ID_JUMP))
 		{
-			m_dwControlFlags |= BC_CFLG_JUMP;
-		}
-
-		if (m_pClientDE->IsCommandOn(COMMAND_ID_DOUBLEJUMP))
-		{
 			// Can only double jump in MCA mode...
 			if (m_pClientShell->IsOnFoot())
 			{

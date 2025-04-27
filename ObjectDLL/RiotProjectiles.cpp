@@ -423,7 +423,7 @@ void CStickyGrenadeProjectile::HandleImpact(HOBJECT hObj)
 
 	if (m_dwImpactAni != INVALID_ANI)
 	{
-		pServerDE->SetModelLooping(m_hObject, DTRUE);
+		pServerDE->SetModelLooping(m_hObject, DFALSE);
 		pServerDE->SetModelAnimation(m_hObject, m_dwImpactAni);
 	}
 

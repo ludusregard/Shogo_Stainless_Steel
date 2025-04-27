@@ -654,11 +654,24 @@ void CPlayerStats::DrawOnFoot (HSURFACE hScreen, int nLeft, int nTop, int nRight
 
 	if (m_bCrosshairEnabled && m_nCrosshairLevel && !m_pClientShell->IsDialogVisible())
 	{
-		int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
-		int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
-
 		HSURFACE hCross = bZoomed ? m_hZoomCrosshair : m_hCrosshair2; 
-		m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, hCross, NULL, x, y, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+		DFLOAT ratio = nScreenHeight / 480.0f;
+		//get crosshair dimensions
+		DDWORD dwCWidth = 0;
+		DDWORD dwCHeight = 0;
+		m_pClientDE->GetSurfaceDims(hCross, &dwCWidth, &dwCHeight);
+		
+		DRect rcCRect;
+		rcCRect.left   = (DDWORD)(nScreenWidth / 2 - dwCWidth / 2 * ratio);
+		rcCRect.top    = (DDWORD)(nScreenHeight / 2 - dwCHeight / 2 * ratio);
+		rcCRect.right  = (DDWORD)(nScreenWidth / 2 + dwCWidth / 2 * ratio);
+		rcCRect.bottom = (DDWORD)(nScreenHeight / 2 + dwCHeight / 2 * ratio);
+		m_pClientDE->ScaleSurfaceToSurfaceTransparent(hScreen, hCross, &rcCRect, NULL, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+		//int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
+		//int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
+		//m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, hCross, NULL, x, y, hTransColor);
 	}
 	
 	// draw the HUD
@@ -752,6 +765,14 @@ void CPlayerStats::DrawEnforcer (HSURFACE hScreen, int nLeft, int nTop, int nRig
 	// set up the transparent color
 
 	HDECOLOR hTransColor = DNULL;
+///////////////////NEW/////////////////////////////////////////////////////////////	
+	DFLOAT ratio = nScreenHeight / 480.0f;
+	//values for crosshair dimensions
+	DDWORD dwCWidth = 0;
+	DDWORD dwCHeight = 0;
+	//rect do draw crosshairs in
+	DRect rcCRect;
+///////////////////NEW/////////////////////////////////////////////////////////////	
 
 	// draw the crosshair
 
@@ -759,28 +780,68 @@ void CPlayerStats::DrawEnforcer (HSURFACE hScreen, int nLeft, int nTop, int nRig
 	{
 		if (bZoomed)
 		{
-			int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
-			int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+			//get crosshair dimensions
+			m_pClientDE->GetSurfaceDims(m_hZoomCrosshair, &dwCWidth, &dwCHeight);
+			
+			rcCRect.left   = (DDWORD)(nScreenWidth / 2 - dwCWidth / 2 * ratio);
+			rcCRect.top    = (DDWORD)(nScreenHeight / 2 - dwCHeight / 2 * ratio);
+			rcCRect.right  = (DDWORD)(nScreenWidth / 2 + dwCWidth / 2 * ratio);
+			rcCRect.bottom = (DDWORD)(nScreenHeight / 2 + dwCHeight / 2 * ratio);
+			m_pClientDE->ScaleSurfaceToSurfaceTransparent(hScreen, m_hZoomCrosshair, &rcCRect, NULL, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+			//int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
+			//int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
 
-			m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hZoomCrosshair, NULL, x, y, hTransColor);
+			//m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hZoomCrosshair, NULL, x, y, hTransColor);
 		}
 		else
 		{
 			if (m_nCrosshairLevel == 2)
 			{
-				int x = (nScreenWidth >> 1) - 68;
-				int y = nTop + ((nScreenHeight - cyCrosshairLeft) >> 1);
-				m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair1, NULL, x, y, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+				//get crosshair dimensions
+				m_pClientDE->GetSurfaceDims(m_hCrosshair1, &dwCWidth, &dwCHeight);
+				
+				rcCRect.left   = (DDWORD)((nScreenWidth >> 1) - 68 * ratio);
+				rcCRect.top    = (DDWORD)(nScreenHeight / 2 - dwCHeight / 2 * ratio);
+				rcCRect.right  = (DDWORD)(rcCRect.left + dwCWidth * ratio);
+				rcCRect.bottom = (DDWORD)(nScreenHeight / 2 + dwCHeight / 2 * ratio);
+				m_pClientDE->ScaleSurfaceToSurfaceTransparent(hScreen, m_hCrosshair1, &rcCRect, NULL, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+				//int x = (nScreenWidth >> 1) - 68;
+				//int y = nTop + ((nScreenHeight - cyCrosshairLeft) >> 1);
+				//m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair1, NULL, x, y, hTransColor);
 			
-				x = (nScreenWidth >> 1) + 36;
-				y = nTop + ((nScreenHeight - cyCrosshairRight) >> 1);
-				m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair3, NULL, x, y, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+				//get crosshair dimensions
+				m_pClientDE->GetSurfaceDims(m_hCrosshair3, &dwCWidth, &dwCHeight);
+				
+				rcCRect.left   = (DDWORD)((nScreenWidth >> 1) + 36 * ratio);
+				rcCRect.top    = (DDWORD)(nScreenHeight / 2 - dwCHeight / 2 * ratio);
+				rcCRect.right  = (DDWORD)(rcCRect.left + dwCWidth * ratio);
+				rcCRect.bottom = (DDWORD)(nScreenHeight / 2 + dwCHeight / 2 * ratio);
+				m_pClientDE->ScaleSurfaceToSurfaceTransparent(hScreen, m_hCrosshair3, &rcCRect, NULL, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+				//x = (nScreenWidth >> 1) + 36;
+				//y = nTop + ((nScreenHeight - cyCrosshairRight) >> 1);
+				//m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair3, NULL, x, y, hTransColor);
 			}
 	
-			int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
-			int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+			//get crosshair dimensions
+			m_pClientDE->GetSurfaceDims(m_hCrosshair2, &dwCWidth, &dwCHeight);
+			
+			rcCRect.left   = (DDWORD)(nScreenWidth / 2 - dwCWidth / 2 * ratio);
+			rcCRect.top    = (DDWORD)(nScreenHeight / 2 - dwCHeight / 2 * ratio);
+			rcCRect.right  = (DDWORD)(nScreenWidth / 2 + dwCWidth / 2 * ratio);
+			rcCRect.bottom = (DDWORD)(nScreenHeight / 2 + dwCHeight / 2 * ratio);
+			m_pClientDE->ScaleSurfaceToSurfaceTransparent(hScreen, m_hCrosshair2, &rcCRect, NULL, hTransColor);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+			//int x = nLeft + ((nScreenWidth - cxCrosshairMiddle) >> 1);
+			//int y = nTop + ((nScreenHeight - cyCrosshairMiddle) >> 1);
 
-			m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair2, NULL, x, y, hTransColor);
+			//m_pClientDE->DrawSurfaceToSurfaceTransparent (hScreen, m_hCrosshair2, NULL, x, y, hTransColor);
 		}
 	}
 

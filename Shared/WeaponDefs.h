@@ -856,7 +856,7 @@ inline DBYTE GetWeaponFX(int nWeaponId)
 		/*GUN_ENERGYGRENADE_ID*/	WFX_MARK | WFX_SPARKS | WFX_SMOKE,
 		/*GUN_KATOGRENADE_ID*/		WFX_MARK | WFX_SPARKS | WFX_SMOKE,
 		/*GUN_MAC10_ID*/			WFX_FIRESOUND | WFX_LIGHT | WFX_MARK | WFX_MUZZLE | WFX_TRACER | WFX_SHELL,
-		/*GUN_TOW_ID*/				WFX_MARK | WFX_SPARKS | WFX_SMOKE,
+		/*GUN_TOW_ID*/				WFX_FIRESOUND | WFX_MARK | WFX_SPARKS | WFX_SMOKE,
 		/*NOT USED2*/				0,
 		/*GUN_SQUEAKYTOY_ID*/		0,
 		/*GUN_TANTO_ID*/			WFX_FIRESOUND | WFX_SPARKS,
@@ -873,7 +873,7 @@ inline DBYTE GetProjectileFX(int nWeaponId)
 
 	DBYTE s_nProjectileFX[GUN_MAX_NUMBER] =
 	{
-		/*GUN_PULSERIFLE_ID*/		PFX_LIGHT,
+		/*GUN_PULSERIFLE_ID*/		PFX_FLYSOUND | PFX_LIGHT,
 		/*GUN_LASERCANNON_ID*/		0,				
 		/*GUN_SPIDER_ID*/			PFX_FLYSOUND,
 		/*GUN_BULLGUT_ID*/			PFX_FLYSOUND | PFX_SMOKETRAIL | PFX_FLARE | PFX_LIGHT,
@@ -1720,7 +1720,7 @@ inline int GetShotsPerClip(int nWeaponId)
 
 	int s_nShotsPerClip[GUN_MAX_NUMBER] =
 	{
-		/*GUN_PULSERIFLE_ID*/		30,
+		/*GUN_PULSERIFLE_ID*/		-1,
 		/*GUN_LASERCANNON_ID*/		-1,				
 		/*GUN_SPIDER_ID*/			1,
 		/*GUN_BULLGUT_ID*/			4,
@@ -1733,12 +1733,12 @@ inline int GetShotsPerClip(int nWeaponId)
 		/*GUN_ENERGYBLADE_ID*/		-1,
 		/*GUN_KATANA_ID*/			-1,
 		/*GUN_MONOKNIFE_ID*/		-1,
-		/*GUN_COLT45_ID*/			22,
+		/*GUN_COLT45_ID*/		                  -1,
 		/*GUN_SHOTGUN_ID*/			1,
-		/*GUN_ASSAULTRIFLE_ID*/		50,
+		/*GUN_ASSAULTRIFLE_ID*/		-1,
 		/*GUN_ENERGYGRENADE_ID*/	6,
 		/*GUN_KATOGRENADE_ID*/		1,
-		/*GUN_MAC10_ID*/			30,
+		/*GUN_MAC10_ID*/			-1,
 		/*GUN_TOW_ID*/				1,
 		/*NOT USED2*/				0,
 		/*GUN_SQUEAKYTOY_ID*/		-1,
@@ -1909,7 +1909,7 @@ inline DFLOAT GetWeaponVelocity(int nWeaponId)
 		/*GUN_ENERGYGRENADE_ID*/	2000.0f,
 		/*GUN_KATOGRENADE_ID*/		750.0f,
 		/*GUN_MAC10_ID*/			0.0f,
-		/*GUN_TOW_ID*/				2000.0f,
+		/*GUN_TOW_ID*/				1500.0f,
 		/*NOT USED2*/				0.0f,
 		/*GUN_SQUEAKYTOY_ID*/		0.0f,
 		/*GUN_TANTO_ID*/			0.0f

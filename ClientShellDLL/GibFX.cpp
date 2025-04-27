@@ -337,8 +337,9 @@ void CGibFX::UpdateGib(int nIndex, DBOOL bBounced)
 		{
 			if (m_bRotate)
 			{
+				//Stainless Steel: gibs clipping into the ground has been addressed
 				DRotation rRot;
-				m_pClientDE->SetupEuler(&rRot, 0.0f, m_fYaw, m_fRoll);
+				m_pClientDE->SetupEuler(&rRot, 0.0f, m_fYaw, 0.0f);
 				m_pClientDE->SetObjectRotation(m_hGib[nIndex], &rRot);	
 			}
 
@@ -640,7 +641,8 @@ void CGibFX::HandleBounce(int nIndex)
 
 	// Add a blood splat...
 
-	if (m_bBloodSplats)
+	//Stainless Steel: don't create blood splats if we're tiny
+	if (m_bBloodSplats && m_eSize != MS_SMALL)
 	{
 		// Don't add blood splats on the sky...
 

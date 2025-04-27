@@ -348,7 +348,7 @@ DBOOL CWeaponFX::CreateObject(CClientDE* pClientDE)
 			CreateMuzzleLight();
 		}
 	}
-
+    
 	if (m_nFX & WFX_FIRESOUND)
 	{
 		PlayFireSound();
@@ -954,9 +954,9 @@ char* CWeaponFX::GetSparkTexture(RiotWeaponId nWeaponId, SurfaceType eSurfType,
 
 			case GUN_TANTO_ID :
 			{
-				//	VEC_SET(*pvColor1, 200.0f, 200.0f, 200.0f);
-				//	VEC_SET(*pvColor2, 255.0f, 255.0f, 255.0f);
-				//	pTexture = "SpecialFX\\ParticleTextures\\Tanto.dtx";
+					//VEC_SET(*pvColor1, 200.0f, 200.0f, 200.0f);
+					//VEC_SET(*pvColor2, 255.0f, 255.0f, 255.0f);
+					//pTexture = "SpecialFX\\ParticleTextures\\Tanto.dtx";
 			}
 			break;
 
@@ -1700,13 +1700,15 @@ void CWeaponFX::CreateLightFX()
 
 		case GUN_TANTO_ID:
 		{
-			dl.fMinRadius    = 25.0f;
-			dl.fMaxRadius	 = 75.0f;
-			dl.fRampUpTime	 = 0.3f;
-			dl.fMaxTime		 = 0.1f;
-			dl.fMinTime		 = 0.0f;
-			dl.fRampDownTime = 0.2f;
-			VEC_SET(m_vLightColor, 0.9f, 0.9f, 0.9f);
+			//Stainless Steel: disabled the tanto's lights, it looked nonsensical
+			//dl.fMinRadius    = 25.0f;
+			//dl.fMaxRadius	 = 75.0f;
+			//dl.fRampUpTime	 = 0.3f;
+			//dl.fMaxTime		 = 0.1f;
+			//dl.fMinTime		 = 0.0f;
+			//dl.fRampDownTime = 0.2f;
+			//VEC_SET(m_vLightColor, 0.9f, 0.9f, 0.9f);
+			bCreateLight = DFALSE;
 		}
 		break;
 
@@ -2298,7 +2300,7 @@ void CWeaponFX::CreateJuggernautBeam()
 	ex.fInitialAlpha	= 0.8f;
 	ex.fFinalAlpha		= 0.0f;
 	ex.pFilename		= "Models\\Powerups\\beam.abc";
-	ex.pSkin			= "SpecialFX\\Explosions\\Juggernaut.dtx";
+	ex.pSkin			= "SpecialFX\\Explosions\\Juggernautbeam.dtx";
 
 	CSpecialFX* pFX = psfxMgr->CreateSFX(SFX_EXPLOSION_ID, &ex);
 	if (pFX) pFX->Update();
@@ -2338,7 +2340,7 @@ void CWeaponFX::CreateBullgutFX()
 	ex.fLifeTime		= 1.0f;
 	ex.fInitialAlpha	= 0.6f;
 	ex.fFinalAlpha		= 0.0f;
-	ex.pFilename		= "Models\\PV_Weapons\\RedRiotExplosion.abc";
+	ex.pFilename		= "Models\\PV_Weapons\\BullgutExplosionCore.abc";
 	ex.pSkin			= "SpriteTextures\\weapons\\Explosions\\BllgCore.dtx";
 
 	CSpecialFX* pFX = psfxMgr->CreateSFX(SFX_EXPLOSION_ID, &ex);
@@ -2621,29 +2623,29 @@ void CWeaponFX::CreateRedRiotBeam()
 
 	// Create beam...
 
-	DFLOAT	fLifeTime = 2.0f;
-
+	DVector vPos;
 	DFLOAT fMaxRange = GetWeaponRange(m_nWeaponId);
 	DFLOAT fDistance = m_fFireDistance;
 	if (fDistance > fMaxRange) fDistance = fMaxRange;
 	
-	DVector vTemp, vPos;
+	DVector vTemp;
 	VEC_MULSCALAR(vTemp, m_vDir, fDistance/2.0f);
 	VEC_ADD(vPos, m_vFirePos, vTemp);
 
 	EXCREATESTRUCT ex;
+
 	VEC_COPY(ex.vPos, vPos);
 	ROT_COPY(ex.rRot, m_rDirRot);
 
 	VEC_SET(ex.vVel, 0.0f, 0.0f, 0.0f);
+	VEC_SET(ex.vInitialScale, 1.0f, 1.0f, fDistance);
 	VEC_SET(ex.vFinalScale, 0.1f, 0.1f, fDistance);
-	VEC_SET(ex.vInitialScale, 2.0f, 2.0f, fDistance);
-	VEC_SET(ex.vInitialColor, 1.0f, .5f, .1f);
-	VEC_SET(ex.vFinalColor, 1.0f, .5f, .1f);
+	VEC_SET(ex.vInitialColor, 1.0f, 1.0f, 1.0f);
+	VEC_SET(ex.vFinalColor, 1.0f, 1.0f, 1.0f);
 	ex.bUseUserColors = DTRUE;
 
 	ex.dwFlags			= FLAG_VISIBLE | FLAG_MODELGOURAUDSHADE | FLAG_NOLIGHT;
-	ex.fLifeTime		= 0.5f;
+	ex.fLifeTime		= 0.25f;
 	ex.fInitialAlpha	= 0.8f;
 	ex.fFinalAlpha		= 0.0f;
 	ex.pFilename		= "Models\\Powerups\\beam.abc";
@@ -2652,6 +2654,7 @@ void CWeaponFX::CreateRedRiotBeam()
 	CSpecialFX* pFX = psfxMgr->CreateSFX(SFX_EXPLOSION_ID, &ex);
 	if (pFX) pFX->Update();
 }
+
 
 
 // ----------------------------------------------------------------------- //
@@ -2777,6 +2780,10 @@ void CWeaponFX::CreateLaserCannonBeam()
 	// Create beam...
 
 	DFLOAT fMaxRange = GetWeaponRange(m_nWeaponId);
+	DVector vVelMin, vVelMax;
+	VEC_SET(vVelMin, -100.0f, 150.0f, -100.0f)
+	VEC_SET(vVelMax, 100.0f, 200.0f, 100.0f)
+
 
 	DFLOAT fDistance = m_fFireDistance;
 	if (fDistance > fMaxRange) fDistance = fMaxRange;
@@ -2796,6 +2803,8 @@ void CWeaponFX::CreateLaserCannonBeam()
 	VEC_SET(ex.vFinalColor, 1.0f, 0.1f, 0.1f);
 	ex.bUseUserColors = DTRUE;
 
+
+
 	ex.dwFlags			= FLAG_VISIBLE | FLAG_MODELGOURAUDSHADE | FLAG_NOLIGHT;
 	ex.fLifeTime		= 0.5f;
 	ex.fInitialAlpha	= 0.9f;
@@ -2805,6 +2814,7 @@ void CWeaponFX::CreateLaserCannonBeam()
 
 	pFX = psfxMgr->CreateSFX(SFX_EXPLOSION_ID, &ex);
 	if (pFX) pFX->Update();
+
 }
 
 // ----------------------------------------------------------------------- //
@@ -3775,3 +3785,4 @@ void CWeaponFX::PlayFireSound()
 		PlaySoundFromPos(&m_vFirePos, pFireSound, WEAPON_SOUND_RADIUS, SOUNDPRIORITY_PLAYER_HIGH);
 	}
 }
+

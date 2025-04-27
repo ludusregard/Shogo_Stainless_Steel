@@ -357,6 +357,7 @@ class BaseAI : public CBaseCharacter
 	
 		DFLOAT		m_fRecomputeTime;		// The earliest we can recompute our state
 		DFLOAT		m_fNextBumpedTime;		// Next time we can get bumped
+                                    DFLOAT                      m_fReactionTime;                                         // Originally from Aegis
 
 		DVector		m_vRight;				// Object's right vector
 		DVector		m_vUp;					// Object's up vector

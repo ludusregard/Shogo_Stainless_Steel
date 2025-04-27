@@ -1419,7 +1419,7 @@ void CDestructable::HandleCriticalHit(HOBJECT hHeHitMe, DFLOAT & fDamage)
 	{
 		// Make sure this is a character type...
 
-		if (IsBaseCharacter (m_hObject))
+		if (IsBaseCharacter (m_hObject) && !IsPlayer(m_hObject))
 		{
 			fDamage *= CRITICAL_HIT_RATIO;
 

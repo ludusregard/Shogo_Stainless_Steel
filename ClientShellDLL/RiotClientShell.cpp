@@ -38,6 +38,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <math.h>
 
 #define min(a,b)	(a < b ? a : b)
 #define max(a,b)	(a > b ? a : b)
@@ -53,7 +54,7 @@
 #define SWAYV_CRAWLING	16.0f
 #define SWAYH_CRAWLING	40.0f
 
-#define FOV_NORMAL		90
+//#define m_fFOVx		106
 #define FOV_ZOOMED		10
 
 #define DEG2RAD(x)		(((x)*MATH_PI)/180.0f)
@@ -375,8 +376,12 @@ CRiotClientShell::CRiotClientShell()
 	m_fCantIncrement	= 0.009f; // in radians (.5 degrees)
 	m_fCantMaxDist		= 0.035f; // in radians (2.0 degrees)
 	m_fCamCant			= 0.0f;
-	
-	m_fCurrentFovX			= DEG2RAD(FOV_NORMAL);
+
+///////////////////NEW/////////////////////////////////////////////////////////////		
+	m_fFOVx				= 90.0f;
+	m_bFOVoverride		= TRUE;
+///////////////////NEW/////////////////////////////////////////////////////////////	
+	m_fCurrentFovX			= DEG2RAD(m_fFOVx);
 	m_bZoomView				= DFALSE;
 	m_bOldZoomView			= DFALSE;
 	m_bZooming				= DFALSE;
@@ -750,7 +755,19 @@ void CRiotClientShell::ShowSplash()
 	pClientDE->GetSurfaceDims (hScreen, &nWidth, &nHeight);
 	
 	DRect rcDst;
-	rcDst.left = rcDst.top = 0;
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//centering the splashscreen and keep original aspect
+	//the width the screen would have in 4:3 aspect
+	DDWORD nWidthNew = (int)((float)nHeight * (4.0f / 3.0f));
+	//how much to move the image to the right
+	DDWORD xoffset = (nWidth - nWidthNew) / 2;
+
+	//substract that from the width
+	nWidth = nWidth - xoffset;
+	rcDst.left	= xoffset;
+	rcDst.top = 0;
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//rcDst.left = rcDst.top = 0;
 	rcDst.right = nWidth;
 	rcDst.bottom = nHeight;
 
@@ -1071,13 +1088,48 @@ DDWORD CRiotClientShell::OnEngineInitialized(struct RMode_t *pMode, DGUID *pAppG
 
 	theStruct.m_ObjectType = OT_CAMERA;
 
+
+
 	m_hCamera = pClientDE->CreateObject(&theStruct);
 	pClientDE->SetCameraRect(m_hCamera, DFALSE, 0, 0, dwWidth, dwHeight);
-	
-	DFLOAT y = (m_fCurrentFovX * dwHeight) / dwWidth;
-	pClientDE->SetCameraFOV(m_hCamera, m_fCurrentFovX, y);
+///////////////////NEW/////////////////////////////////////////////////////////////		
+	//on startup, check if there is an override
+	if(m_bFOVoverride)
+	{
+		//get possible override FOV
+		hVar = pClientDE->GetConsoleVar("FovX");
+		if(hVar)
+		{
+			m_fFOVx = pClientDE->GetVarValueFloat(hVar);
+		}
+		//when no override FOV set
+		else
+		{
+			m_bFOVoverride = FALSE;
+		}
+	}
 
-	
+	//set hFOV if there is no override
+	if(!m_bFOVoverride)
+	{
+		//base FOVs on hFOV of 90, not vFOV of 78
+		m_fFOVy = (float)RAD2DEG(2 * atan(tan(DEG2RAD(90) / 2.0f) * (3.0f / 4.0f)));
+		//calculate Hor+ FOV
+		m_fFOVx = (float)RAD2DEG(2 * atan(tan(DEG2RAD(m_fFOVy) / 2.0f) * ((float)dwWidth / (float)dwHeight)));
+	}
+	//on override calculate new vFOV instead
+	else
+	{
+		m_fFOVy = (float)RAD2DEG(2 * atan(tan(DEG2RAD(m_fFOVx) / 2.0f) * ((float)dwHeight / (float)dwWidth)));
+	}	
+
+	m_fCurrentFovX = DEG2RAD(m_fFOVx);
+
+	pClientDE->SetCameraFOV(m_hCamera, m_fCurrentFovX, DEG2RAD(m_fFOVy));
+///////////////////NEW/////////////////////////////////////////////////////////////		
+	//DFLOAT y = (m_fCurrentFovX * dwHeight) / dwWidth;
+	//pClientDE->SetCameraFOV(m_hCamera, m_fCurrentFovX, y);
+
 	// Attempt to find the movies path
 
 	CWinUtil::GetMoviesPath (m_strMoviesDir);
@@ -2460,7 +2512,7 @@ void CRiotClientShell::UpdateLoadingLevelState()
 	if (m_bInWorld && hPlayerObj)
 	{
 		m_nGameState = GS_PLAYING;
-		PauseGame(DFALSE);
+		PauseGame(DFALSE);	
 	}
 }
 
@@ -2547,7 +2599,7 @@ void CRiotClientShell::UpdatePlayerInfo()
 
 	if (m_bAllowPlayerMovement != m_bLastAllowPlayerMovement)
 	{
-		SetInputState(m_bAllowPlayerMovement);
+		SetInputState(m_bAllowPlayerMovement);	
 	}
 
 	HLOCALOBJ hPlayerObj = pClientDE->GetClientObject();
@@ -2827,10 +2879,21 @@ DBOOL CRiotClientShell::UpdateAlternativeCamera()
 												 &m_nOldCameraRight, &m_nOldCameraBottom);
 
 						// Determine how to adjust camera rect/fov...
-
 						DBYTE nCamType = pCamFX->GetType();
-						DFLOAT fVal1 = (nCamType == CT_CINEMATIC) ? 1.0f/6.0f : 0.0f;
-						DFLOAT fVal2 = (nCamType == CT_CINEMATIC) ? 2.0f/3.0f : 1.0f;
+///////////////////NEW/////////////////////////////////////////////////////////////	
+						float ratio = (((float)dwWidth / (float)dwHeight) / (4.0f / 3.0f));
+						//cap cutscene height at 90% of screen
+						DFLOAT fVal2 = 2.0f/3.0f * ratio  > 0.9f ? 0.9f : 2.0f/3.0f * ratio;
+						//no letterboxing when camera not cinametic
+						fVal2 = (nCamType == CT_CINEMATIC) ? fVal2 : 1.0f;
+						DFLOAT fVal1 = (nCamType == CT_CINEMATIC) ? (1.0f - fVal2) / 2.0f : 0.0f;
+						DDWORD dwMovieHeight = (DDWORD)(dwHeight * fVal2);
+						//keep original cutscene aspect, 4:(3 * 2/3) = 2
+						DDWORD dwMovieWidth = dwMovieHeight * 2;
+						int nXoffset = (dwWidth - dwMovieWidth) / 2;
+///////////////////NEW/////////////////////////////////////////////////////////////	
+						//DFLOAT fVal1 = (nCamType == CT_CINEMATIC) ? 1.0f/6.0f : 0.0f;
+						//DFLOAT fVal2 = (nCamType == CT_CINEMATIC) ? 2.0f/3.0f : 1.0f;
 
 						int nOffset = int(dwHeight * fVal1);
 						int nBottom = dwHeight - nOffset;
@@ -2839,11 +2902,19 @@ DBOOL CRiotClientShell::UpdateAlternativeCamera()
 						// won't be letterbox.
 						bFullScreen = DFALSE;
 						
-						pClientDE->SetCameraRect(m_hCamera, bFullScreen, 0, nOffset, dwWidth, nBottom);
+						//pClientDE->SetCameraRect(m_hCamera, bFullScreen, 0, nOffset, dwWidth, nBottom);
 
 						DFLOAT y, x;
-						pClientDE->GetCameraFOV(m_hCamera, &x, &y);
-						y = (x * dwHeight * fVal2) / dwWidth;
+						//pClientDE->GetCameraFOV(m_hCamera, &x, &y);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+						//letterbox movie and pillarbox if necessary
+						pClientDE->SetCameraRect(m_hCamera, bFullScreen, nXoffset, nOffset, nXoffset + dwMovieWidth, nBottom);
+						//xFOV is always 90 because cutscene is anamorphic
+						x = DEG2RAD(90.0f);
+						//movie aspect is always 2:1
+						y = 2.0f * (float)atan(tan(x / 2.0f) * (1.0f / 2.0f));
+///////////////////NEW/////////////////////////////////////////////////////////////
+						//y = (x * dwHeight * fVal2) / dwWidth;
 
 						pClientDE->SetCameraFOV(m_hCamera, x, y);
 					}
@@ -2904,8 +2975,14 @@ void CRiotClientShell::TurnOffAlternativeCamera()
 	DFLOAT y, x;
 
 	pClientDE->GetCameraFOV(m_hCamera, &x, &y);
-	y = (x * dwHeight) / dwWidth;
 
+///////////////////NEW/////////////////////////////////////////////////////////////	
+	//reset fov because its now decreased in cutscenes
+	x = DEG2RAD(m_fFOVx);	
+	y = 2.0f * (float)atan(tan(x / 2.0f) * ((float)dwHeight / (float)dwWidth));
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//y = (x * dwHeight) / dwWidth;
+	
 	pClientDE->SetCameraFOV(m_hCamera, x, y);
 }
 
@@ -3196,16 +3273,19 @@ void CRiotClientShell::UpdateCameraZoom()
 	m_bZooming = DTRUE;
 	
 	DBOOL bZoomingIn = DTRUE;
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//calculate appropriate zoomed FOV for this aspect ratio
+	DFLOAT fFOV_zoomed = 2.0f * (float)RAD2DEG(atan(tan(DEG2RAD(FOV_ZOOMED / 2.0f)) * (((float)dwWidth / (float)dwHeight) / (4.0f / 3.0f))));
+///////////////////NEW/////////////////////////////////////////////////////////////
 
 	// Need to zoom camera
-	if (m_bZoomView && fovX > DEG2RAD(FOV_ZOOMED))
+	if (m_bZoomView && fovX > DEG2RAD(fFOV_zoomed))
 	{
 		fovX -= zoomSpeed;
 		
-		if (fovX < DEG2RAD(FOV_ZOOMED)) 
+		if (fovX < DEG2RAD(fFOV_zoomed)) 
 		{
-			fovX = DEG2RAD(FOV_ZOOMED);
-			CSPrint ("Zoom mode on");
+			fovX = DEG2RAD(fFOV_zoomed);
 			m_bZooming = DFALSE;
 
 			// Set the lod scale to max value
@@ -3223,7 +3303,6 @@ void CRiotClientShell::UpdateCameraZoom()
 		if (fovX > m_fCurrentFovX) 
 		{
 			fovX = m_fCurrentFovX;
-			CSPrint ("Zoom mode off");
 			m_bZooming = DFALSE;
 
 			// Set the lod scale for models back to saved value...
@@ -3235,7 +3314,12 @@ void CRiotClientShell::UpdateCameraZoom()
 
 	if (oldFovX != fovX && dwWidth && dwHeight)
 	{
-		fovY = (fovX * dwHeight) / dwWidth;
+///////////////////NEW/////////////////////////////////////////////////////////////
+		//get correct vFOV from zoomed hFOV		
+		fovY = 2.0f * (float)atan(tan(fovX / 2.0f) * ((float)dwHeight / (float)dwWidth));
+///////////////////NEW/////////////////////////////////////////////////////////////
+		//fovY = (fovX * dwHeight) / dwWidth;
+		
 
 		pClientDE->SetCameraFOV(m_hCamera, fovX, fovY);
 
@@ -3243,7 +3327,7 @@ void CRiotClientShell::UpdateCameraZoom()
 
 		DFLOAT fVal1 = m_fCurrentFovX - fovX;
 		DFLOAT fVal2 = (m_fSaveLODScale * LODSCALE_MULTIPLIER) - m_fSaveLODScale;
-		DFLOAT fVal3 = m_fCurrentFovX - DEG2RAD(FOV_ZOOMED);
+		DFLOAT fVal3 = m_fCurrentFovX - DEG2RAD(fFOV_zoomed);
 
 		DFLOAT fNewLODScale = fVal3 > 0.0f ? (m_fSaveLODScale + (fVal1 * fVal2) / fVal3) : (m_fSaveLODScale * LODSCALE_MULTIPLIER);
 
@@ -3896,7 +3980,11 @@ void CRiotClientShell::UpdateUnderWaterFX(DBOOL bUpdate)
 	// Initialize to default fov x and y...
 
 	DFLOAT fFovX = m_fCurrentFovX;
-	DFLOAT fFovY = (fFovX * dwHeight) / dwWidth;
+///////////////////NEW/////////////////////////////////////////////////////////////		
+	DFLOAT fFovY = 2.0f * (float)atan(tan(fFovX / 2.0f) * ((float)dwHeight / (float)dwWidth));
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//DFLOAT fFovY = (fFovX * dwHeight) / dwWidth;
+	
 	
 	if (bUpdate)
 	{
@@ -3908,10 +3996,14 @@ void CRiotClientShell::UpdateUnderWaterFX(DBOOL bUpdate)
 		{
 			fFovX -= fSpeed;
 			fFovY += fSpeed;
-
-			if (fFovY > (m_fCurrentFovX * dwHeight) / dwWidth)
+///////////////////NEW/////////////////////////////////////////////////////////////
+			if (fFovY > 2.0f * (float)atan(tan(m_fCurrentFovX / 2.0f) * ((float)dwHeight / (float)dwWidth)))
 			{
-				fFovY = (m_fCurrentFovX * dwHeight) / dwWidth;
+				fFovY = 2.0f * (float)atan(tan(m_fCurrentFovX / 2.0f) * ((float)dwHeight / (float)dwWidth));
+///////////////////NEW/////////////////////////////////////////////////////////////
+			//if (fFovY > (m_fCurrentFovX * dwHeight) / dwWidth)
+			//{
+			//	fFovY = (m_fCurrentFovX * dwHeight) / dwWidth;
 				m_fFovXFXDir = -m_fFovXFXDir;
 			}
 		}
@@ -3919,10 +4011,16 @@ void CRiotClientShell::UpdateUnderWaterFX(DBOOL bUpdate)
 		{
 			fFovX += fSpeed;
 			fFovY -= fSpeed;
-
-			if (fFovY < (m_fCurrentFovX * dwHeight - 40) / dwWidth)
+///////////////////NEW/////////////////////////////////////////////////////////////
+			//i guess this should be relative to screensize
+			float yRatio = ((float)dwHeight / 480.0f);
+			if (fFovY < 2.0f * (float)atan(tan(m_fCurrentFovX / 2.0f) * (((float)dwHeight - 40.0f * yRatio) / (float)dwWidth)))
 			{
-				fFovY = (m_fCurrentFovX * dwHeight - 40) / dwWidth;
+				fFovY = 2.0f * (float)atan(tan(m_fCurrentFovX / 2.0f) * (((float)dwHeight  - 48.0f * yRatio) / (float)dwWidth));
+///////////////////NEW/////////////////////////////////////////////////////////////
+			//if (fFovY < (m_fCurrentFovX * dwHeight - 40) / dwWidth)
+			//{
+			//	fFovY = (m_fCurrentFovX * dwHeight - 40) / dwWidth;
 				m_fFovXFXDir = -m_fFovXFXDir;
 			}
 		}
@@ -4110,14 +4208,9 @@ void CRiotClientShell::HandleZoomChange(DBYTE nWeaponId)
 													    : "Sounds\\Weapons\\AssaultRifle\\zoomout.wav");
 		if (m_bZoomView)
 		{
-			m_bDrawHud = DFALSE;
 
 			pSound = (nWeaponId == GUN_SNIPERRIFLE_ID ? "Sounds\\Weapons\\SniperRifle\\zoomin.wav"
 													  : "Sounds\\Weapons\\AssaultRifle\\zoomin.wav");
-		}
-		else
-		{
-			m_bDrawHud = DTRUE;
 		}
 
 		PlaySoundLocal(pSound, SOUNDPRIORITY_MISC_MEDIUM, DFALSE, DFALSE, 100, DTRUE );
@@ -4149,6 +4242,15 @@ void CRiotClientShell::OnCommandOn(int command)
 
 	switch (command)
 	{
+	    //Stainless Steel: repurposed the double jump key for zooming
+	    case COMMAND_ID_DOUBLEJUMP :
+		{
+			 if (IsOnFoot())
+             m_weaponModel.ChangeWeapon(COMMAND_ID_WEAPON_4);
+			 else
+             m_weaponModel.ChangeWeapon(COMMAND_ID_WEAPON_5);
+		}
+		break;
 		case COMMAND_ID_PREV_WEAPON : 
 		{
 			m_weaponModel.ChangeToPrevWeapon(); 
@@ -4716,8 +4818,7 @@ void CRiotClientShell::OnKeyDown(int key, int rep)
 		if (!m_bGamePaused)
 		{
 			m_nGameState = GS_PAUSED;
-
-			m_hGamePausedSurface = CTextHelper::CreateSurfaceFromString(pClientDE, m_menu.GetFont28n(), IDS_PAUSED);
+			m_hGamePausedSurface = CTextHelper::CreateSurfaceFromString(pClientDE, m_menu.GetFont28n(), IDS_PAUSED);		
 		}
 
 		PauseGame (!m_bGamePaused, DTRUE);
@@ -5251,7 +5352,7 @@ void CRiotClientShell::OnMessage(DBYTE messageID, HMESSAGEREAD hMessage)
 
 			if (m_hCamera)
 			{
-				pClientDE->SetCameraFOV(m_hCamera, x, y);
+				//pClientDE->SetCameraFOV(m_hCamera, x, y);
 			}
 
 			m_playerCamera.SetFirstPersonOffset(m_vCameraOffset);
@@ -6369,9 +6470,21 @@ void CRiotClientShell::PauseGame (DBOOL bPause, DBOOL bPauseSound)
 	{
 		pClientDE->ResumeSounds();
 	}
-
-	SetInputState (!bPause);
-	SetMouseInput (!bPause);
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//when exiting pause mode only enable input if it was enabled before	
+	if(!bPause)
+	{
+		SetInputState (m_bAllowPlayerMovement);
+		SetMouseInput (m_bAllowPlayerMovement);
+	}
+	else
+	{
+		SetInputState (DFALSE);
+		SetMouseInput (DFALSE);
+	}
+///////////////////NEW/////////////////////////////////////////////////////////////	
+	//SetInputState (!bPause);
+	//SetMouseInput (!bPause);	
 }
 
 // ----------------------------------------------------------------------- //
@@ -7126,19 +7239,21 @@ DBOOL CRiotClientShell::DoLoadWorld(char* pWorldFile, char* pCurWorldSaveFile,
 
 	// Make sure the FOV is set correctly...
 
-	if (m_hCamera)
-	{
-		DDWORD dwWidth = 640, dwHeight = 480;
-		pClientDE->GetSurfaceDims(pClientDE->GetScreenSurface(), &dwWidth, &dwHeight);
+///////////////////NEW/////////////////////////////////////////////////////////////		
+	//this has been removed because its done whenever a menu or cutscene begins and ends
+	// if (m_hCamera)
+	// {
+	// 	DDWORD dwWidth = 640, dwHeight = 480;
+	// 	pClientDE->GetSurfaceDims(pClientDE->GetScreenSurface(), &dwWidth, &dwHeight);
 
-		pClientDE->SetCameraRect(m_hCamera, DFALSE, 0, 0, dwWidth, dwHeight);
-		
-		m_fCurrentFovX = DEG2RAD(FOV_NORMAL);
+	// 	pClientDE->SetCameraRect(m_hCamera, DFALSE, 0, 0, dwWidth, dwHeight);
 
-		DFLOAT y = (m_fCurrentFovX * dwHeight) / dwWidth;
-		pClientDE->SetCameraFOV(m_hCamera, m_fCurrentFovX, y);
-	}
-	
+	// 	m_fCurrentFovX = DEG2RAD(FOV_NORMAL);
+
+	// 	DFLOAT y = (m_fCurrentFovX * dwHeight) / dwWidth;
+	// 	pClientDE->SetCameraFOV(m_hCamera, m_fCurrentFovX, y);
+	// }
+///////////////////NEW/////////////////////////////////////////////////////////////		
 
 	// See if the game is over...
 
@@ -7391,10 +7506,13 @@ DBOOL CRiotClientShell::SetMenuMode (DBOOL bMenuUp, DBOOL bLoadingLevel)
 	}
 	else if (!bMenuUp)
 	{
-		if (m_hCamera && (m_rcMenuRestoreCamera.left != 0 || m_rcMenuRestoreCamera.top != 0 || m_rcMenuRestoreCamera.right != 0 || m_rcMenuRestoreCamera.bottom != 0))
-		{
-			pClientDE->SetCameraRect (m_hCamera, m_bMenuRestoreFullScreen, m_rcMenuRestoreCamera.left, m_rcMenuRestoreCamera.top, m_rcMenuRestoreCamera.right, m_rcMenuRestoreCamera.bottom);
-		}
+///////////////////NEW/////////////////////////////////////////////////////////////	
+		//no need to restore camera rect here anymore, its done in the RemoveMenuPolygrid() function now
+		//if (m_hCamera && (m_rcMenuRestoreCamera.left != 0 || m_rcMenuRestoreCamera.top != 0 || m_rcMenuRestoreCamera.right != 0 || m_rcMenuRestoreCamera.bottom != 0))
+		//{
+		//	pClientDE->SetCameraRect (m_hCamera, m_bMenuRestoreFullScreen, m_rcMenuRestoreCamera.left, m_rcMenuRestoreCamera.top, m_rcMenuRestoreCamera.right, m_rcMenuRestoreCamera.bottom);
+		//}
+///////////////////NEW/////////////////////////////////////////////////////////////	
 
 		int nGameMode = GAMEMODE_NONE;
 		pClientDE->GetGameMode (&nGameMode);
@@ -8572,9 +8690,18 @@ void CRiotClientShell::CreateMenuPolygrid()
 	DDWORD dwWidth = 640, dwHeight = 480;
 	pClientDE->GetSurfaceDims(pClientDE->GetScreenSurface(), &dwWidth, &dwHeight);
 
-	DFLOAT y = (DEG2RAD(FOV_NORMAL) * dwHeight) / dwWidth;
-	pClientDE->SetCameraFOV(m_hCamera, DEG2RAD(FOV_NORMAL), y);
-
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//clear screen so world isnt visible at the sides of the pause screen
+	ClearAllScreenBuffers();
+	//pillarbox menu
+	DDWORD dwMenuWidth = (DDWORD)(dwHeight * 4.0f / 3.0f);
+	DDWORD dwPillarWidth = (dwWidth - dwMenuWidth) / 2;
+	pClientDE->SetCameraRect(m_hCamera, DFALSE, dwPillarWidth, 0, dwPillarWidth + dwMenuWidth, dwHeight);
+	//set FOV to normal values	
+	pClientDE->SetCameraFOV(m_hCamera, DEG2RAD(90), (float)(2 * atan(tan(DEG2RAD(90) / 2.0f) * ( 3.0f / 4.0f))));
+///////////////////NEW/////////////////////////////////////////////////////////////
+	//DFLOAT y = (DEG2RAD(m_fFOVx) * dwHeight) / dwWidth;
+	//pClientDE->SetCameraFOV(m_hCamera, DEG2RAD(m_fFOVx), y);
 
 	// Okay, since we now have a "server" object to associate with the
 	// polygrid, create the polygrid...
@@ -8632,6 +8759,12 @@ void CRiotClientShell::RemoveMenuPolygrid()
 	if (m_hCamera)
 	{
 		pClientDE->SetCameraFOV(m_hCamera, m_fMenuSaveFOVx, m_fMenuSaveFOVy);
+///////////////////NEW/////////////////////////////////////////////////////////////
+		//set camera to cover whole screen again
+		DDWORD dwWidth = 640, dwHeight = 480;
+		pClientDE->GetSurfaceDims(pClientDE->GetScreenSurface(), &dwWidth, &dwHeight);
+		pClientDE->SetCameraRect(m_hCamera, DTRUE, 0, 0, dwWidth, dwHeight);
+///////////////////NEW/////////////////////////////////////////////////////////////
 	}
 
 
@@ -8806,6 +8939,7 @@ void CRiotClientShell::HandleItemPickedup(PickupItemType eType)
 		
 		pClientDE->SetModelHook ((ModelHookFn)NVModelHook, this);
 		m_LightScaleMgr.SetLightScale (&m_vLightScaleNightVision, LightEffectPowerup);
+
 	}
 	else if (eType == PIT_ULTRA_INFRARED)
 	{

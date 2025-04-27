@@ -29,6 +29,7 @@ class CWeaponModel
 		void ToggleVehicleMode();
 
 		DBOOL IsDemoWeapon(DBYTE nCommandId);
+		DDWORD		m_dwControlFlags;
 
 		WeaponState UpdateWeaponModel(DRotation rRot, DVector vPos, DBOOL bFire);
 		void HandleStateChange(HMESSAGEREAD hMessage);

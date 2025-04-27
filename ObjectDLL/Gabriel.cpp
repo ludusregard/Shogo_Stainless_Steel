@@ -188,6 +188,9 @@ void Gabriel::ProcessDamageMsg(HMESSAGEREAD hRead)
 	DamageType eType = (DamageType)pServerDE->ReadFromMessageByte(hRead);
 	HOBJECT hHeHitMe = pServerDE->ReadFromMessageObject(hRead);
 
+	if (!m_bSpottedPlayer)
+		UpdateSenses();
+
 	if (IsPlayer(hHeHitMe) && !m_hCurDlgSnd && !m_damage.GetCanDamage())
 	{
 		char* pSounds[] = { "Sounds\\MajorCharacter\\Gabriel\\laugh1.wav",
@@ -195,6 +198,14 @@ void Gabriel::ProcessDamageMsg(HMESSAGEREAD hRead)
 
 		PlayDialogSound(pSounds[GetRandom(0,1)]);
 	}
+
+	if (IsPlayer(hHeHitMe) && !m_hCurDlgSnd && m_damage.GetCanDamage())
+	{
+		char* pSounds[] = { "Sounds\\MajorCharacter\\Gabriel\\pain1.wav",
+							"Sounds\\MajorCharacter\\Gabriel\\pain2.wav" };
+
+		PlayDialogSound(pSounds[GetRandom(0,1)]);
+	}    
 }
 
 

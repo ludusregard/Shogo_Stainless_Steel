@@ -1,0 +1,300 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: RiotClientShell - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release/ClientShellDLL.res" /d "NDEBUG" "C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ClientShellDLL.rc"" 
+Creating temporary file "C:\Users\CRISTO~1\AppData\Local\Temp\RSP7ACF.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "..\appheaders" /I "..\shared" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "RIOT_BUILD" /D "_MBCS" /Fp"Release/RiotClientShell.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BaseMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DetailSettingsMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DisplayModeMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DisplayOptionsMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\JoystickMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\KeyboardMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LoadLevelMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LoadSavedLevelMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MainMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MouseMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\NewGameMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\OptionsMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SaveLevelMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SinglePlayerMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SoundOptionsMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\AnimeLineFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BaseLineSystemFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BaseParticleSystemFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BaseScaleFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BitmapFont.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\BulletTrailFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\CastLineFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\client_physics.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ClientInfoMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ClientUtilities.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ClientWeaponUtils.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\CMoveMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\Credits.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\CreditsWin.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\CriticalHitFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DeathFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DebrisFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\DebrisTypes.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\DynamicLightFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ExplosionFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\GibFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\InfoDisplay.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\IpMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\JuggernautFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\KeyFixes.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LaserCannonFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LightFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LightScaleMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\LineBallFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MarkSFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MessageBox.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MessageMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\MissionObjectives.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\ModelFuncs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\Music.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\NetInfo.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\NetStart.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ParticleExplosionFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ParticleSystemFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ParticleTrailFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ParticleTrailSegmentFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PickupItemFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\plasma1.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PlayerCamera.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PlayerFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PlayerInventory.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PlayerStats.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PolyGridFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\PopupMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ProjectileFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\RiotClientShell.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\RiotCommonUtilities.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\RiotMenu.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\RiotSettings.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\RocketFlareFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SFXMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SFXReg.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\ShellCasingFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\Slider.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SmokeFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SmokeSphereFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\Sparam.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SparksFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\SpriteFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\TextHelper.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\TracerFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\VKDefs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\WeaponDefs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WeaponFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WeaponFXLow.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WeaponFXMed.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WeaponModel.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WeaponSoundFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ClientShellDLL\WinUtil.cpp"
+]
+Creating command line "cl.exe @C:\Users\CRISTO~1\AppData\Local\Temp\RSP7ACF.tmp" 
+Creating temporary file "C:\Users\CRISTO~1\AppData\Local\Temp\RSP7AD0.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/CShell.pdb" /machine:I386 /out:"..\Shogo\CShell.dll" /implib:"Release/CShell.lib" 
+".\Release\BaseMenu.obj"
+".\Release\DetailSettingsMenu.obj"
+".\Release\DisplayModeMenu.obj"
+".\Release\DisplayOptionsMenu.obj"
+".\Release\JoystickMenu.obj"
+".\Release\KeyboardMenu.obj"
+".\Release\LoadLevelMenu.obj"
+".\Release\LoadSavedLevelMenu.obj"
+".\Release\MainMenu.obj"
+".\Release\MouseMenu.obj"
+".\Release\NewGameMenu.obj"
+".\Release\OptionsMenu.obj"
+".\Release\SaveLevelMenu.obj"
+".\Release\SinglePlayerMenu.obj"
+".\Release\SoundOptionsMenu.obj"
+".\Release\AnimeLineFX.obj"
+".\Release\BaseLineSystemFX.obj"
+".\Release\BaseParticleSystemFX.obj"
+".\Release\BaseScaleFX.obj"
+".\Release\BitmapFont.obj"
+".\Release\BulletTrailFX.obj"
+".\Release\CastLineFX.obj"
+".\Release\client_physics.obj"
+".\Release\ClientInfoMgr.obj"
+".\Release\ClientUtilities.obj"
+".\Release\ClientWeaponUtils.obj"
+".\Release\CMoveMgr.obj"
+".\Release\Credits.obj"
+".\Release\CreditsWin.obj"
+".\Release\CriticalHitFX.obj"
+".\Release\DeathFX.obj"
+".\Release\DebrisFX.obj"
+".\Release\DebrisTypes.obj"
+".\Release\DynamicLightFX.obj"
+".\Release\ExplosionFX.obj"
+".\Release\GibFX.obj"
+".\Release\InfoDisplay.obj"
+".\Release\IpMgr.obj"
+".\Release\JuggernautFX.obj"
+".\Release\KeyFixes.obj"
+".\Release\LaserCannonFX.obj"
+".\Release\LightFX.obj"
+".\Release\LightScaleMgr.obj"
+".\Release\LineBallFX.obj"
+".\Release\MarkSFX.obj"
+".\Release\MessageBox.obj"
+".\Release\MessageMgr.obj"
+".\Release\MissionObjectives.obj"
+".\Release\ModelFuncs.obj"
+".\Release\Music.obj"
+".\Release\NetInfo.obj"
+".\Release\NetStart.obj"
+".\Release\ParticleExplosionFX.obj"
+".\Release\ParticleSystemFX.obj"
+".\Release\ParticleTrailFX.obj"
+".\Release\ParticleTrailSegmentFX.obj"
+".\Release\PickupItemFX.obj"
+".\Release\plasma1.obj"
+".\Release\PlayerCamera.obj"
+".\Release\PlayerFX.obj"
+".\Release\PlayerInventory.obj"
+".\Release\PlayerStats.obj"
+".\Release\PolyGridFX.obj"
+".\Release\PopupMenu.obj"
+".\Release\ProjectileFX.obj"
+".\Release\RiotClientShell.obj"
+".\Release\RiotCommonUtilities.obj"
+".\Release\RiotMenu.obj"
+".\Release\RiotSettings.obj"
+".\Release\RocketFlareFX.obj"
+".\Release\SFXMgr.obj"
+".\Release\SFXReg.obj"
+".\Release\ShellCasingFX.obj"
+".\Release\Slider.obj"
+".\Release\SmokeFX.obj"
+".\Release\SmokeSphereFX.obj"
+".\Release\Sparam.obj"
+".\Release\SparksFX.obj"
+".\Release\SpriteFX.obj"
+".\Release\TextHelper.obj"
+".\Release\TracerFX.obj"
+".\Release\VKDefs.obj"
+".\Release\WeaponDefs.obj"
+".\Release\WeaponFX.obj"
+".\Release\WeaponFXLow.obj"
+".\Release\WeaponFXMed.obj"
+".\Release\WeaponModel.obj"
+".\Release\WeaponSoundFX.obj"
+".\Release\WinUtil.obj"
+".\Release\ClientShellDLL.res"
+]
+Creating command line "link.exe @C:\Users\CRISTO~1\AppData\Local\Temp\RSP7AD0.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+BaseMenu.cpp
+DetailSettingsMenu.cpp
+DisplayModeMenu.cpp
+DisplayOptionsMenu.cpp
+JoystickMenu.cpp
+KeyboardMenu.cpp
+LoadLevelMenu.cpp
+LoadSavedLevelMenu.cpp
+MainMenu.cpp
+MouseMenu.cpp
+NewGameMenu.cpp
+OptionsMenu.cpp
+SaveLevelMenu.cpp
+SinglePlayerMenu.cpp
+SoundOptionsMenu.cpp
+AnimeLineFX.cpp
+BaseLineSystemFX.cpp
+BaseParticleSystemFX.cpp
+BaseScaleFX.cpp
+BitmapFont.cpp
+BulletTrailFX.cpp
+CastLineFX.cpp
+client_physics.cpp
+ClientInfoMgr.cpp
+ClientUtilities.cpp
+ClientWeaponUtils.cpp
+CMoveMgr.cpp
+Credits.cpp
+CreditsWin.cpp
+CriticalHitFX.cpp
+DeathFX.cpp
+DebrisFX.cpp
+DebrisTypes.cpp
+DynamicLightFX.cpp
+ExplosionFX.cpp
+GibFX.cpp
+InfoDisplay.cpp
+IpMgr.cpp
+JuggernautFX.cpp
+KeyFixes.cpp
+LaserCannonFX.cpp
+LightFX.cpp
+LightScaleMgr.cpp
+LineBallFX.cpp
+MarkSFX.cpp
+MessageBox.cpp
+MessageMgr.cpp
+MissionObjectives.cpp
+ModelFuncs.cpp
+Music.cpp
+NetInfo.cpp
+NetStart.cpp
+ParticleExplosionFX.cpp
+ParticleSystemFX.cpp
+ParticleTrailFX.cpp
+ParticleTrailSegmentFX.cpp
+PickupItemFX.cpp
+plasma1.cpp
+PlayerCamera.cpp
+PlayerFX.cpp
+PlayerInventory.cpp
+PlayerStats.cpp
+PolyGridFX.cpp
+PopupMenu.cpp
+ProjectileFX.cpp
+RiotClientShell.cpp
+RiotCommonUtilities.cpp
+RiotMenu.cpp
+RiotSettings.cpp
+RocketFlareFX.cpp
+SFXMgr.cpp
+SFXReg.cpp
+ShellCasingFX.cpp
+Slider.cpp
+SmokeFX.cpp
+SmokeSphereFX.cpp
+Sparam.cpp
+SparksFX.cpp
+SpriteFX.cpp
+TextHelper.cpp
+TracerFX.cpp
+VKDefs.cpp
+WeaponDefs.cpp
+WeaponFX.cpp
+WeaponFXLow.cpp
+WeaponFXMed.cpp
+WeaponModel.cpp
+WeaponSoundFX.cpp
+WinUtil.cpp
+Linking...
+   Creating library Release/CShell.lib and object Release/CShell.exp
+
+
+
+<h3>Results</h3>
+CShell.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

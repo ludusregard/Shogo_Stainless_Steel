@@ -1,0 +1,417 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Object - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\CRISTO~1\AppData\Local\Temp\RSP8F20.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "..\appheaders" /I "..\shared" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /Fp"Release/Object.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Activation.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Admiral.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AdvSound.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AIKey.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AIKeyData.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AIPathMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AISounds.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Akuma.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Andra10.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Andra5.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ArmorBase.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ArmorRepair.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Assassin.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\AVC.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Baku.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\BaseAI.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\BaseCharacter.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\BodyArmor.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\BodyProp.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Bouncer.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\CachedFiles.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Camera.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Cat.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\CharacterAttributes.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\CharacterMgr.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Civilian1.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Civilian2.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ClientCastLineSFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ClientDeathSFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ClientLightFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ClientSFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ClientWeaponSFX.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Cothineal.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\appheaders\cpp_engineobjects_de.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\DebrisFuncs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\DebrisTypes.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Destructable.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\DestructableDoor.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\DestructableRotatingDoor.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\DestructableWorldModel.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\DialogTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Door.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Dropship.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\EliteShockTrooper.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\EliteTrooper.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Enforcer.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\EnhancementItem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Enhancements.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ExitTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Explosion.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\FirstAid.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\FirstAidBase.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Gabriel.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\GameStartPoint.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\GlassProp.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Hammerhead.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Hank.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Inventory.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\InventoryItem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Kathryn.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Key.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\KeyData.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\KeyFramer.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Kura.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\LaserTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Lift.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\LittleKid.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\MajorCharacter.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\ModelFuncs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Music.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\object_list.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ObjectiveTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Officer.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Ordog.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ParticleSystem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PickupItem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PlayerMode.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PlayerObj.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PolyGrid.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PowerSurge.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Powerup.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Predator.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Projectile.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Prop.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\PVWeaponModel.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Raksha.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Rascal.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\RiotCommonUtilities.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RiotObjectUtilities.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RiotProjectiles.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RiotServerShell.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RiotWeapons.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RotatingDoor.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\RotatingWorldModel.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Ruin150.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Ryo.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Samantha.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Sanjuro.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ScaleSprite.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ShockTrooper.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\ShogoSecret.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Sparam.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Sparrowhawk.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Spawner.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\SSFXReg.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\StoryTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Tenma.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Toshiro.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\TractorBeam.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\TransmissionTrigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Trigger.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\TriggerSound.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Trooper.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\UhlanA3.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\UltraPowerupItem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\UltraPowerups.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\UpgradeItem.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Upgrades.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Vandal.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Vehicle.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Vigilance.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\VolumeBrush.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\VolumeBrushTypes.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Weapon.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\Shared\WeaponDefs.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\WeaponPowerups.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\Weapons.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\WorldModelDebris.cpp"
+"C:\Users\Cristobal\Downloads\Everything Else\StainlessSteelSource\ObjectDLL\WorldProperties.cpp"
+]
+Creating command line "cl.exe @C:\Users\CRISTO~1\AppData\Local\Temp\RSP8F20.tmp" 
+Creating temporary file "C:\Users\CRISTO~1\AppData\Local\Temp\RSP8F21.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/Object.pdb" /machine:I386 /out:"..\Shogo\Object.lto" /implib:"Release/Object.lib" 
+".\Release\Activation.obj"
+".\Release\Admiral.obj"
+".\Release\AdvSound.obj"
+".\Release\AIKey.obj"
+".\Release\AIKeyData.obj"
+".\Release\AIPathMgr.obj"
+".\Release\AISounds.obj"
+".\Release\Akuma.obj"
+".\Release\Andra10.obj"
+".\Release\Andra5.obj"
+".\Release\ArmorBase.obj"
+".\Release\ArmorRepair.obj"
+".\Release\Assassin.obj"
+".\Release\AVC.obj"
+".\Release\Baku.obj"
+".\Release\BaseAI.obj"
+".\Release\BaseCharacter.obj"
+".\Release\BodyArmor.obj"
+".\Release\BodyProp.obj"
+".\Release\Bouncer.obj"
+".\Release\CachedFiles.obj"
+".\Release\Camera.obj"
+".\Release\Cat.obj"
+".\Release\CharacterAttributes.obj"
+".\Release\CharacterMgr.obj"
+".\Release\Civilian1.obj"
+".\Release\Civilian2.obj"
+".\Release\ClientCastLineSFX.obj"
+".\Release\ClientDeathSFX.obj"
+".\Release\ClientLightFX.obj"
+".\Release\ClientSFX.obj"
+".\Release\ClientWeaponSFX.obj"
+".\Release\Cothineal.obj"
+".\Release\cpp_engineobjects_de.obj"
+".\Release\DebrisFuncs.obj"
+".\Release\DebrisTypes.obj"
+".\Release\Destructable.obj"
+".\Release\DestructableDoor.obj"
+".\Release\DestructableRotatingDoor.obj"
+".\Release\DestructableWorldModel.obj"
+".\Release\DialogTrigger.obj"
+".\Release\Door.obj"
+".\Release\Dropship.obj"
+".\Release\EliteShockTrooper.obj"
+".\Release\EliteTrooper.obj"
+".\Release\Enforcer.obj"
+".\Release\EnhancementItem.obj"
+".\Release\Enhancements.obj"
+".\Release\ExitTrigger.obj"
+".\Release\Explosion.obj"
+".\Release\FirstAid.obj"
+".\Release\FirstAidBase.obj"
+".\Release\Gabriel.obj"
+".\Release\GameStartPoint.obj"
+".\Release\GlassProp.obj"
+".\Release\Hammerhead.obj"
+".\Release\Hank.obj"
+".\Release\Inventory.obj"
+".\Release\InventoryItem.obj"
+".\Release\Kathryn.obj"
+".\Release\Key.obj"
+".\Release\KeyData.obj"
+".\Release\KeyFramer.obj"
+".\Release\Kura.obj"
+".\Release\LaserTrigger.obj"
+".\Release\Lift.obj"
+".\Release\LittleKid.obj"
+".\Release\MajorCharacter.obj"
+".\Release\ModelFuncs.obj"
+".\Release\Music.obj"
+".\Release\object_list.obj"
+".\Release\ObjectiveTrigger.obj"
+".\Release\Officer.obj"
+".\Release\Ordog.obj"
+".\Release\ParticleSystem.obj"
+".\Release\PickupItem.obj"
+".\Release\PlayerMode.obj"
+".\Release\PlayerObj.obj"
+".\Release\PolyGrid.obj"
+".\Release\PowerSurge.obj"
+".\Release\Powerup.obj"
+".\Release\Predator.obj"
+".\Release\Projectile.obj"
+".\Release\Prop.obj"
+".\Release\PVWeaponModel.obj"
+".\Release\Raksha.obj"
+".\Release\Rascal.obj"
+".\Release\RiotCommonUtilities.obj"
+".\Release\RiotObjectUtilities.obj"
+".\Release\RiotProjectiles.obj"
+".\Release\RiotServerShell.obj"
+".\Release\RiotWeapons.obj"
+".\Release\RotatingDoor.obj"
+".\Release\RotatingWorldModel.obj"
+".\Release\Ruin150.obj"
+".\Release\Ryo.obj"
+".\Release\Samantha.obj"
+".\Release\Sanjuro.obj"
+".\Release\ScaleSprite.obj"
+".\Release\ShockTrooper.obj"
+".\Release\ShogoSecret.obj"
+".\Release\Sparam.obj"
+".\Release\Sparrowhawk.obj"
+".\Release\Spawner.obj"
+".\Release\SSFXReg.obj"
+".\Release\StoryTrigger.obj"
+".\Release\Tenma.obj"
+".\Release\Toshiro.obj"
+".\Release\TractorBeam.obj"
+".\Release\TransmissionTrigger.obj"
+".\Release\Trigger.obj"
+".\Release\TriggerSound.obj"
+".\Release\Trooper.obj"
+".\Release\UhlanA3.obj"
+".\Release\UltraPowerupItem.obj"
+".\Release\UltraPowerups.obj"
+".\Release\UpgradeItem.obj"
+".\Release\Upgrades.obj"
+".\Release\Vandal.obj"
+".\Release\Vehicle.obj"
+".\Release\Vigilance.obj"
+".\Release\VolumeBrush.obj"
+".\Release\VolumeBrushTypes.obj"
+".\Release\Weapon.obj"
+".\Release\WeaponDefs.obj"
+".\Release\WeaponPowerups.obj"
+".\Release\Weapons.obj"
+".\Release\WorldModelDebris.obj"
+".\Release\WorldProperties.obj"
+]
+Creating command line "link.exe @C:\Users\CRISTO~1\AppData\Local\Temp\RSP8F21.tmp"
+<h3>Output Window</h3>
+Compiling...
+Activation.cpp
+Admiral.cpp
+AdvSound.cpp
+AIKey.cpp
+AIKeyData.cpp
+AIPathMgr.cpp
+AISounds.cpp
+Akuma.cpp
+Andra10.cpp
+Andra5.cpp
+ArmorBase.cpp
+ArmorRepair.cpp
+Assassin.cpp
+AVC.cpp
+Baku.cpp
+BaseAI.cpp
+BaseCharacter.cpp
+BodyArmor.cpp
+BodyProp.cpp
+Bouncer.cpp
+CachedFiles.cpp
+Camera.cpp
+Cat.cpp
+CharacterAttributes.cpp
+CharacterMgr.cpp
+Civilian1.cpp
+Civilian2.cpp
+ClientCastLineSFX.cpp
+ClientDeathSFX.cpp
+ClientLightFX.cpp
+ClientSFX.cpp
+ClientWeaponSFX.cpp
+Cothineal.cpp
+cpp_engineobjects_de.cpp
+DebrisFuncs.cpp
+DebrisTypes.cpp
+Destructable.cpp
+DestructableDoor.cpp
+DestructableRotatingDoor.cpp
+DestructableWorldModel.cpp
+DialogTrigger.cpp
+Door.cpp
+Dropship.cpp
+EliteShockTrooper.cpp
+EliteTrooper.cpp
+Enforcer.cpp
+EnhancementItem.cpp
+Enhancements.cpp
+ExitTrigger.cpp
+Explosion.cpp
+FirstAid.cpp
+FirstAidBase.cpp
+Gabriel.cpp
+GameStartPoint.cpp
+GlassProp.cpp
+Hammerhead.cpp
+Hank.cpp
+Inventory.cpp
+InventoryItem.cpp
+Kathryn.cpp
+Key.cpp
+KeyData.cpp
+KeyFramer.cpp
+Kura.cpp
+LaserTrigger.cpp
+Lift.cpp
+LittleKid.cpp
+MajorCharacter.cpp
+ModelFuncs.cpp
+Music.cpp
+object_list.cpp
+ObjectiveTrigger.cpp
+Officer.cpp
+Ordog.cpp
+ParticleSystem.cpp
+PickupItem.cpp
+PlayerMode.cpp
+PlayerObj.cpp
+PolyGrid.cpp
+PowerSurge.cpp
+Powerup.cpp
+Predator.cpp
+Projectile.cpp
+Prop.cpp
+PVWeaponModel.cpp
+Raksha.cpp
+Rascal.cpp
+RiotCommonUtilities.cpp
+RiotObjectUtilities.cpp
+RiotProjectiles.cpp
+RiotServerShell.cpp
+RiotWeapons.cpp
+RotatingDoor.cpp
+RotatingWorldModel.cpp
+Ruin150.cpp
+Ryo.cpp
+Samantha.cpp
+Sanjuro.cpp
+ScaleSprite.cpp
+ShockTrooper.cpp
+ShogoSecret.cpp
+Sparam.cpp
+Sparrowhawk.cpp
+Spawner.cpp
+SSFXReg.cpp
+StoryTrigger.cpp
+Tenma.cpp
+Toshiro.cpp
+TractorBeam.cpp
+TransmissionTrigger.cpp
+Trigger.cpp
+TriggerSound.cpp
+Trooper.cpp
+UhlanA3.cpp
+UltraPowerupItem.cpp
+UltraPowerups.cpp
+UpgradeItem.cpp
+Upgrades.cpp
+Vandal.cpp
+Vehicle.cpp
+Vigilance.cpp
+VolumeBrush.cpp
+VolumeBrushTypes.cpp
+Weapon.cpp
+WeaponDefs.cpp
+WeaponPowerups.cpp
+Weapons.cpp
+WorldModelDebris.cpp
+WorldProperties.cpp
+Linking...
+   Creating library Release/Object.lib and object Release/Object.exp
+
+
+
+<h3>Results</h3>
+Object.lto - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

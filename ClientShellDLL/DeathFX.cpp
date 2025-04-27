@@ -279,10 +279,26 @@ void CDeathFX::SetupGibTypes(GIBCREATESTRUCT & gib)
 
 	switch (nCase)
 	{
-		case 0:  // The whole body!!! (human only)
+		case 0:	// Head, arm(s), and leg(s)...
 		{
-			gib.nNumGibs =1;
-			gib.eGibTypes[0] = GT_BODY;
+			gib.nNumGibs = GetRandom(3, 5);
+			gib.eGibTypes[0] = GT_HEAD;
+			gib.eGibTypes[1] = GetRandom(0,1) == 0 ? GT_LEFT_ARM : GT_RIGHT_ARM;
+			gib.eGibTypes[2] = GetRandom(0,1) == 0 ? GT_LEFT_LEG : GT_RIGHT_LEG;
+
+			// Add another arm?...
+
+			if (gib.nNumGibs == 4)
+			{
+				gib.eGibTypes[3] = (gib.eGibTypes[1] == GT_LEFT_ARM) ? GT_RIGHT_ARM : GT_LEFT_ARM;
+			}
+
+			// Add another leg?...
+
+			if (gib.nNumGibs == 5)
+			{
+				gib.eGibTypes[4] = (gib.eGibTypes[2] == GT_LEFT_LEG) ? GT_RIGHT_LEG : GT_LEFT_LEG;
+			}
 		}
 		break;
 		
@@ -309,10 +325,10 @@ void CDeathFX::SetupGibTypes(GIBCREATESTRUCT & gib)
 		}
 		break;
 
-		case 2:  // Upper body, randomly a leg or two...
+		case 2:  // Head, randomly a leg or two...
 		{
 			gib.nNumGibs = GetRandom(1, 3);
-			gib.eGibTypes[0] = GT_UPPER_BODY;
+			gib.eGibTypes[0] = GT_HEAD;
 
 			if (gib.nNumGibs == 2)  // Add a leg
 			{
@@ -326,10 +342,10 @@ void CDeathFX::SetupGibTypes(GIBCREATESTRUCT & gib)
 		}
 		break;
 		
-		case 3:	// Lower body, randomly a head, an arm or two...
+		case 3:	// Left leg, randomly a head, an arm or two...
 		{
 			gib.nNumGibs = GetRandom(1, 4);
-			gib.eGibTypes[0] = GT_LOWER_BODY;
+			gib.eGibTypes[0] = GT_LEFT_LEG;
 
 			if (gib.nNumGibs == 2)
 			{

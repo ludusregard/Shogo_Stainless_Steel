@@ -335,6 +335,12 @@ class CRiotClientShell : public CClientShellDE
 		// Camera zoom related variables...
 
 		DFLOAT			m_fCurrentFovX;		// The current (non-zoomed) fovX
+///////////////////NEW/////////////////////////////////////////////////////////////		
+		DFLOAT			m_fFOVx;			//the global FOVs
+		DFLOAT			m_fFOVy;
+		DBOOL			m_bFOVoverride;
+///////////////////NEW/////////////////////////////////////////////////////////////		
+
 		DBOOL			m_bZoomView;		// Are we in zoom mode
 		DBOOL			m_bOldZoomView;		// Were we zoom modelast frame
 		DBOOL			m_bZooming;			// Are we zooming in/out

@@ -282,6 +282,7 @@ BaseAI::BaseAI() : CBaseCharacter()
 	m_fFireStartTime			= 0.0f;
 	m_fFireStopTime				= 0.0f;
 	m_fNextBumpedTime			= 0.0f;
+                  m_fReactionTime = 0.0f;
 
 	m_bRecompute				= DFALSE;
 	m_eLastTurnDir				= NONE;
@@ -3976,23 +3977,25 @@ DBOOL BaseAI::ShootTarget()
 	CWeapon* pWeapon = m_weapons.GetCurWeapon();
 	if (!pWeapon) return DFALSE;
 
-	if (m_fCurTime < m_fFireStopTime)  // We're firing...
+	if (m_fCurTime > m_fReactionTime)
 	{
-		SetActionFlag(AI_AFLG_FIRE);
-		return DTRUE;
-	}
-	else if (m_fCurTime > m_fFireStartTime) // We just got done resting...
-	{
-		m_fFireStopTime = (m_fCurTime + GetRandom(pWeapon->GetMinFireDuration(), pWeapon->GetMaxFireDuration()));
+		if (m_fCurTime < m_fFireStopTime)  // We're firing...
+		{
+			SetActionFlag(AI_AFLG_FIRE);
+			return DTRUE;
+		}
+		else if (m_fCurTime > m_fFireStartTime) // We just got done resting...
+		{
+			m_fFireStopTime = (m_fCurTime + GetRandom(pWeapon->GetMinFireDuration(), pWeapon->GetMaxFireDuration()));
 
-		m_fFireStartTime = (m_fFireStopTime + GetRandom(pWeapon->GetMinFireRest() * m_fFireRestAdjust,
+			m_fFireStartTime = (m_fFireStopTime + GetRandom(pWeapon->GetMinFireRest() * m_fFireRestAdjust,
 													    pWeapon->GetMinFireRest() * m_fFireRestAdjust));
-		return DTRUE;
+			return DTRUE;
+		}
 	}
 
 	return DFALSE;
 }
-
 
 // ----------------------------------------------------------------------- //
 //
@@ -5678,6 +5681,7 @@ void BaseAI::SpotPlayer(HOBJECT hObj)
 
 		m_bSpottedPlayer = DTRUE;
 		m_bLostPlayer	 = DFALSE;
+		m_fReactionTime = (m_fCurTime + 0.5f);
 	}
 }
 
@@ -6236,7 +6240,7 @@ void BaseAI::AdjustEvasiveDelay()
 		break;
 
 		case GD_NORMAL:
-			nVal += 2;
+			nVal += 3;
 		break;
 
 		case GD_VERYHARD:
@@ -6316,11 +6320,11 @@ void BaseAI::AdjustDamageAggregate()
 		break;
 
 		case GD_NORMAL:
-			fFactor = 0.5f;
+			fFactor = 0.45f;
 		break;
 
 		case GD_VERYHARD:
-			fFactor = 1.5f;
+			fFactor = 1.25f;
 		break;
 
 		case GD_HARD:

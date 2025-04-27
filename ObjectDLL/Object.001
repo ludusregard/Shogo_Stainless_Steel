@@ -1,5 +1,5 @@
 # Microsoft Developer Studio Project File - Name="Object" - Package Owner=<4>
-# Microsoft Developer Studio Generated Build File, Format Version 6.00
+# Microsoft Developer Studio Generated Build File, Format Version 5.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
@@ -19,15 +19,16 @@ CFG=Object - Win32 Demo Debug
 !MESSAGE 
 !MESSAGE "Object - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "Object - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "Object - Win32 Demo Release" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "Object - Win32 Demo Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "Object - Win32 Demo Release" (based on\
+ "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "Object - Win32 Demo Debug" (based on\
+ "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
-# PROP AllowPerConfigDependencies 0
 # PROP Scc_ProjName ""
 # PROP Scc_LocalPath ""
-CPP=cl.exe
+CPP=xicl.exe
 MTL=midl.exe
 RSC=rc.exe
 
@@ -46,14 +47,14 @@ RSC=rc.exe
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /FD /c
 # ADD CPP /nologo /MT /W3 /GX /O2 /I "..\appheaders" /I "..\shared" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o NUL /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o NUL /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
 # ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
+LINK32=xilink.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Shogo\Object.lto"
 
@@ -71,21 +72,24 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /FD /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\appheaders" /I "..\shared" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /FD /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\appheaders" /I "..\shared" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o NUL /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o NUL /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
+LINK32=xilink.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Shogo\Object.lto" /pdbtype:sept
 # Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=Copying                                                                                                                                                                                                 Object.pdb                                                                                                                                                                                                                          to                                                                                                                                                                                      ..\ 
+SOURCE=$(InputPath)
+PostBuild_Desc=Copying \
+                                                                                                                                                                                              Object.pdb \
+                                                                                                                                                                                                                       to \
+                                                                                                                                                                                   ..\ 
 PostBuild_Cmds=copy Debug\Object.pdb ..\*.*
 # End Special Build Tool
 
@@ -105,14 +109,14 @@ PostBuild_Cmds=copy Debug\Object.pdb ..\*.*
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /I "..\appheaders" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /YX /FD /c
 # ADD CPP /nologo /MT /W3 /GX /O2 /I "..\appheaders" /I "..\shared" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /D "_DEMO" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o NUL /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o NUL /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
 # ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
+LINK32=xilink.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Shogo\Object.lto"
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"\games\shogodemo\shogodem\Object.lto"
 
@@ -132,21 +136,24 @@ LINK32=link.exe
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\appheaders" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /FD /c
 # SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\appheaders" /I "..\shared" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /D "_DEMO" /FD /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\appheaders" /I "..\shared" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "RIOT_BUILD" /D "_DEMO" /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o NUL /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o NUL /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
+LINK32=xilink.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Shogo\Object.lto" /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"\games\shogodemo\shogodem\Object.lto" /pdbtype:sept
 # Begin Special Build Tool
-SOURCE="$(InputPath)"
-PostBuild_Desc=Copying                                                                                                                                                                                                 Object.pdb                                                                                                                                                                                                                          to                                                                                                                                                                                      ..\ 
+SOURCE=$(InputPath)
+PostBuild_Desc=Copying \
+                                                                                                                                                                                              Object.pdb \
+                                                                                                                                                                                                                       to \
+                                                                                                                                                                                   ..\ 
 PostBuild_Cmds=copy Debug\Object.pdb ..\*.*
 # End Special Build Tool
 

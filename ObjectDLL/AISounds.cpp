@@ -29,7 +29,7 @@ static int   s_nNumPainSounds	= (sizeof(s_PainSounds)/sizeof(s_PainSounds[0]));
 static char* s_SetAggressiveSounds[]	= { "SetAgg1.wav", "SetAgg2.wav", "SetAgg3.wav", "SetAgg4.wav", "SetAgg5.wav" };
 static int   s_nNumSetAggressiveSounds	= (sizeof(s_SetAggressiveSounds)/sizeof(s_SetAggressiveSounds[0]));
 
-static char* s_LostTargetSounds[]	= { "LostTar2.wav", "LostTar2.wav" };
+static char* s_LostTargetSounds[]	= { "LostTar1.wav", "LostTar2.wav" };
 static int   s_nNumLostTargetSounds	= (sizeof(s_LostTargetSounds)/sizeof(s_LostTargetSounds[0]));
 
 static char* s_BumpedSounds[]	= { "Bumped1.wav", "Bumped2.wav", "Bumped3.wav", "Bumped4.wav", "Bumped5.wav" };
@@ -571,7 +571,7 @@ void CacheAISounds(BaseAI* pAI)
 		}
 	}
 
-/*	if (CanPlaySound(pAI, AIS_LOSTTARGET))
+	if (CanPlaySound(pAI, AIS_LOSTTARGET))
 	{
 		for (int i=0; i < s_nNumLostTargetSounds; i++)
 		{
@@ -581,7 +581,7 @@ void CacheAISounds(BaseAI* pAI)
 			g_pServerDE->CacheFile(FT_SOUND, s_FileBuffer);
 		}
 	}
-*/
+
 	if (CanPlaySound(pAI, AIS_BUMPED))
 	{
 		for (int i=0; i < s_nNumBumpedSounds; i++)

@@ -775,12 +775,7 @@ void CPlayerObj::UpdateControlFlags()
 	if (!(m_dwControlFlags & BC_CFLG_DUCK))
 	{
 		if (pServerDE->IsCommandOn(m_hClient, COMMAND_ID_JUMP))
-		{
-			m_dwControlFlags |= BC_CFLG_JUMP;
-		}
-
-		if (pServerDE->IsCommandOn(m_hClient, COMMAND_ID_DOUBLEJUMP))
-		{
+        {
 			// Can only double jump in MCA mode...
 
 			GameType eGameType = g_pRiotServerShellDE->GetGameType();

@@ -733,7 +733,7 @@ BEGIN
     IDS_CONTROL_FIRE        "fire"
     IDS_CONTROL_ACTIVATE    "activate"
     IDS_CONTROL_JUMP        "jump"
-    IDS_CONTROL_DOUBLEJUMP  "double jump"
+    IDS_CONTROL_DOUBLEJUMP  "zoom"
     IDS_CONTROL_DUCK        "duck"
     IDS_CONTROL_NEXTWEAPON  "next weapon"
     IDS_CONTROL_PREVIOUSWEAPON "prev weapon"

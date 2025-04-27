@@ -2069,7 +2069,7 @@ void CBaseCharacter::SetDeathAnimation()
 	dwFlags &= ~FLAG_SOLID;
 	pServerDE->SetObjectFlags(m_hObject, dwFlags);
 
-	if ((bGibDType && fDeathDamage > fMaxHitPts * .1f)) // || fDeathDamage > fMaxHitPts * .5f)
+	if ((bGibDType && fDeathDamage > fMaxHitPts * .1f && eDType == DT_EXPLODE)) // || fDeathDamage > fMaxHitPts * .5f)
 	{
 		m_eDeathType = CD_GIB;
 		SetAnimation(pServerDE->GetAnimIndex(m_hObject, "DEATH1"), DFALSE);

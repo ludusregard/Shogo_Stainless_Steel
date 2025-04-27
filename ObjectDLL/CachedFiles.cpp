@@ -350,10 +350,10 @@ char* g_pCachedSpriteMech[] =
 {
 	// Client-side weapon fx...
 
-	"Sprites\\weapons\\ShrddrExp.spr",
 	"Sprites\\PulseImpact.spr",
 	"Sprites\\weapons\\shrddrexp.spr",
 	"Sprites\\Bulletholes\\Laser1.spr",
+	"Sprites\\sniperriflemuzzleflash.spr",
 	"Sprites\\PulseRifle.spr",
 	"Sprites\\ExclMech.spr"
 };

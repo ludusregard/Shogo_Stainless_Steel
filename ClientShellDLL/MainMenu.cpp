@@ -10,7 +10,7 @@ extern void ExitGame (DBOOL, DDWORD);
 
 #define DEMO_VERSION	"DEMO VERSION 2.1"
 
-#define PATCH_VERSION	"v 2.2.15"
+#define PATCH_VERSION	"Stainless Steel v1.4"
 
 void EndGameAndDoMultiplayer (DBOOL bYes, DDWORD nUserData)
 {
@@ -130,6 +130,11 @@ void CMainMenu::Draw (HSURFACE hScreen, int nScreenWidth, int nScreenHeight, int
 	if (!m_pClientDE) return;
 
 	CBaseMenu::Draw (hScreen, nScreenWidth, nScreenHeight, nTextOffset);
+///////////////////NEW/////////////////////////////////////////////////////////////	
+	//move version nr to the edge of the 4:3 menu screen
+	int oldWidth = (int)(nScreenHeight * 4.0f / 3.0f);
+	nScreenWidth = oldWidth + (nScreenWidth - oldWidth) / 2;
+///////////////////NEW/////////////////////////////////////////////////////////////	
 
 #ifdef _DEMO
 	if (!m_hVersion)

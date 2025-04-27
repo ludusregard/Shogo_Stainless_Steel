@@ -82,6 +82,7 @@ CWeaponModel::CWeaponModel()
 	m_bZoomView				= DFALSE;
 	m_nRequestedWeaponId	= 0;
 	m_bWeaponDeselected		= DFALSE;
+	m_dwControlFlags = 0;
 }
 
 
@@ -1668,6 +1669,7 @@ void CWeaponModel::HandleInternalWeaponChange(DBYTE nWeaponId)
 {
 	if (!g_pRiotClientShell) return;
 	if (g_pRiotClientShell->IsPlayerDead() || g_pRiotClientShell->IsSpectatorMode()) return;
+
 
 	// Check to see if we are already on this weapon...
 
